@@ -1,0 +1,615 @@
+{
+	"info": {
+		"_postman_id": "be08004c-2b6f-49d4-a395-84ccfc444004",
+		"name": "BIM Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|H5H39VBy6R1SsyeNEwhm2gL3ZyfLt7HONeEo9u4w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "category",
+							"description": "required",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/category/create",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"category",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create subcategory",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|kDJid328UeB9Pk22fiDn7cp1Jn3iOecrqPxkCxcw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "parent_id",
+							"value": "3",
+							"description": "required when creating subcategory, must exist in category table",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "subcategory",
+							"description": "required",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/category/create",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"category",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get subcategories",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|H5H39VBy6R1SsyeNEwhm2gL3ZyfLt7HONeEo9u4w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/category/1/subcategories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"category",
+						"1",
+						"subcategories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|H5H39VBy6R1SsyeNEwhm2gL3ZyfLt7HONeEo9u4w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "category_id",
+							"value": "1",
+							"description": "required, must be a valid category",
+							"type": "text"
+						},
+						{
+							"key": "subcategory_id",
+							"value": "3",
+							"description": "not required, must have the category_id as a parent",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "500",
+							"description": "required, numeric, and must be greater than 0",
+							"type": "text"
+						},
+						{
+							"key": "customer_id",
+							"value": "3",
+							"description": "required, must be a valid customer",
+							"type": "text"
+						},
+						{
+							"key": "due",
+							"value": "2022-03-10",
+							"description": "required, format:Y-m-d",
+							"type": "text"
+						},
+						{
+							"key": "vat",
+							"value": "22",
+							"description": "required, numeric, must be positive",
+							"type": "text"
+						},
+						{
+							"key": "is_vat_inclusive",
+							"value": "false",
+							"description": "required, boolean",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/transaction/create",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"transaction",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create payment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|kDJid328UeB9Pk22fiDn7cp1Jn3iOecrqPxkCxcw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "transaction_id",
+							"value": "2",
+							"description": "required, must be a valid transaction id",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "250",
+							"description": "required, numeric, must be positive",
+							"type": "text"
+						},
+						{
+							"key": "paid_date",
+							"value": "2022-03-01",
+							"description": "required, format:Y-m-d, must be later or the same as transaction date",
+							"type": "text"
+						},
+						{
+							"key": "method",
+							"value": "CreditCard",
+							"description": "required, must be in options:CreditCard, Cash, PayPal",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/payment/create",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"payment",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|kDJid328UeB9Pk22fiDn7cp1Jn3iOecrqPxkCxcw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/transactions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "view payments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|H5H39VBy6R1SsyeNEwhm2gL3ZyfLt7HONeEo9u4w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/payments",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|H5H39VBy6R1SsyeNEwhm2gL3ZyfLt7HONeEo9u4w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/mytransactions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"mytransactions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reports",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|kDJid328UeB9Pk22fiDn7cp1Jn3iOecrqPxkCxcw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "starting_date",
+							"value": "2022-01-01",
+							"description": "required, format:Y-m-d",
+							"type": "text"
+						},
+						{
+							"key": "ending_date",
+							"value": "2022-03-28",
+							"description": "required, format:Y-m-d, must be later than starting date",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/reports",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"reports"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "monthly report",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|kDJid328UeB9Pk22fiDn7cp1Jn3iOecrqPxkCxcw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "starting_date",
+							"value": "2022-01",
+							"description": "required, format:Y-m-d",
+							"type": "text"
+						},
+						{
+							"key": "ending_date",
+							"value": "2022-08",
+							"description": "required, format:Y-m-d, must be later than starting date",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/monthlyreport",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"monthlyreport"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "shereen",
+							"description": "required",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "shereen@test.com",
+							"description": "required, must be unique email",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456789",
+							"description": "required, minimum:8 digits",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "123456789",
+							"description": "required, must be the same as password",
+							"type": "text"
+						},
+						{
+							"key": "is_admin",
+							"value": "false",
+							"description": "required, options in:true, false",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/user/create",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "mahmoud@test.com",
+							"description": "required, must be a valid email, exists in database",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456789",
+							"description": "required, must be correct for the email",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|H5H39VBy6R1SsyeNEwhm2gL3ZyfLt7HONeEo9u4w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
