@@ -44,7 +44,7 @@ class PaymentController extends Controller
     public function records(){
         try{
             $payments = Payment::all();
-            if($payments){
+            if(count($payments) > 0){
                 return $this->apiResponse("Payments retrieved successfully", [], PaymentResource::collection($payments), [], 201);
             }
             return $this->apiResponse("No payments found", [], [], [], 422);
